@@ -14,5 +14,6 @@ if m > 0:
      print('%d不是质数' % int(n))
 else:
     print('%d是质数' % int(n))
+print ('update')
 
 
