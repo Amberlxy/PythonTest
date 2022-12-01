@@ -12,7 +12,7 @@ url_domain = "http://holo-sh.tapque.com"   #预发布
 url_eventList = url_domain + "/olap/consolidate/et/group/list?productId=" + productId + "&packageId=" + packageId     #某产品的事件列表
 url_pubArgs = url_domain + "/olap/consolidate/et/eventPublicArgs?productId=" + productId + "&eventCode=undefined&packageId="     #事件公参
 url_Args = url_domain + "/et/eventTracking/argList?productId=" + productId + "&eventCode=" + eventcode + "&packageId=" + packageId      #事件私参
-
+url_userAttribute = url_domain + "/olap/consolidate/et/userAttribute/allArgs?productId=" + productId + "&packageId=" + packageId      #用户属性
 
 #获取某项目的事件列表
 # def get_event_info():
@@ -48,32 +48,33 @@ url_Args = url_domain + "/et/eventTracking/argList?productId=" + productId + "&e
 # print(get_pubArgs_info())
 
 #获取事件的私参
-def get_Args_info():
-    headers = {"access-token" : "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxODA5MTc1NTY2MDp4eHh4eHh4OjEzMjgyNDY5NjI4NTM1Mzk4NDI6MTQ0NzgwNDA0MTUyNjM1ODAxODoyOmFsbDphbGw6YWxsOmFsbCIsInVuaXF1ZVZhbHVlIjoiMTgwOTE3NTU2NjA6eHh4eHh4eDoxMzI4MjQ2OTYyODUzNTM5ODQyOjE0NDc4MDQwNDE1MjYzNTgwMTg6MjphbGw6YWxsOmFsbDphbGwiLCJleHAiOjE2Njk4Mzg3MTB9.H4-kNmvrDdooZI5La0IixmAm137KxRGFZIndQPERCTRldbQR_ifZiZxUmxRIPZ_t1pSJAIxfOAiw4WO6a_33WIFqOYLwjKu9xDgQGCbBFSFcIhjJev9YcB3pWXFsVhMOPolE0SZVFkNnEXe-OapuX-ODluoxdeu4ppsBe0o2FRE"}
-    Args = requests.get(url_Args, headers = headers)
-    Argsdic = Args.json()
-    try:
-        ArgsList = []
-        for i in range(0,len(Argsdic["records"])):
-            ArgsList.append(dict(name = Argsdic["records"][i]['name'], dataType = Argsdic["records"][i]['dataType']))
-        return ArgsList
-    except:
-        print("接口异常：",Args.json())
+# def get_Args_info():
+#     headers = {"access-token" : "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxODA5MTc1NTY2MDp4eHh4eHh4OjEzMjgyNDY5NjI4NTM1Mzk4NDI6MTQ0NzgwNDA0MTUyNjM1ODAxODoyOmFsbDphbGw6YWxsOmFsbCIsInVuaXF1ZVZhbHVlIjoiMTgwOTE3NTU2NjA6eHh4eHh4eDoxMzI4MjQ2OTYyODUzNTM5ODQyOjE0NDc4MDQwNDE1MjYzNTgwMTg6MjphbGw6YWxsOmFsbDphbGwiLCJleHAiOjE2Njk4Mzg3MTB9.H4-kNmvrDdooZI5La0IixmAm137KxRGFZIndQPERCTRldbQR_ifZiZxUmxRIPZ_t1pSJAIxfOAiw4WO6a_33WIFqOYLwjKu9xDgQGCbBFSFcIhjJev9YcB3pWXFsVhMOPolE0SZVFkNnEXe-OapuX-ODluoxdeu4ppsBe0o2FRE"}
+#     Args = requests.get(url_Args, headers = headers)
+#     Argsdic = Args.json()
+#     try:
+#         ArgsList = []
+#         for i in range(0,len(Argsdic["records"])):
+#             ArgsList.append(dict(name = Argsdic["records"][i]['name'], dataType = Argsdic["records"][i]['dataType']))
+#         return ArgsList
+#     except:
+#         print("接口异常：",Args.json())
 
-print(get_Args_info())
+# print(get_Args_info())
 
 
 #获取用户属性
-def get_Args_info():
+def get_userAttribute_info():
     headers = {"access-token" : "eyJhbGciOiJSUzI1NiJ9.eyJzdWIiOiIxODA5MTc1NTY2MDp4eHh4eHh4OjEzMjgyNDY5NjI4NTM1Mzk4NDI6MTQ0NzgwNDA0MTUyNjM1ODAxODoyOmFsbDphbGw6YWxsOmFsbCIsInVuaXF1ZVZhbHVlIjoiMTgwOTE3NTU2NjA6eHh4eHh4eDoxMzI4MjQ2OTYyODUzNTM5ODQyOjE0NDc4MDQwNDE1MjYzNTgwMTg6MjphbGw6YWxsOmFsbDphbGwiLCJleHAiOjE2Njk4Mzg3MTB9.H4-kNmvrDdooZI5La0IixmAm137KxRGFZIndQPERCTRldbQR_ifZiZxUmxRIPZ_t1pSJAIxfOAiw4WO6a_33WIFqOYLwjKu9xDgQGCbBFSFcIhjJev9YcB3pWXFsVhMOPolE0SZVFkNnEXe-OapuX-ODluoxdeu4ppsBe0o2FRE"}
-    Args = requests.get(url_Args, headers = headers)
-    Argsdic = Args.json()
+    userAttribute = requests.get(url_userAttribute, headers = headers)
+    userAttributeinfo = userAttribute.json()
+    print(userAttributeinfo)
     try:
         ArgsList = []
-        for i in range(0,len(Argsdic["records"])):
-            ArgsList.append(dict(name = Argsdic["records"][i]['name'], dataType = Argsdic["records"][i]['dataType']))
+        for i in range(0,len(userAttributeinfo["records"])):
+            ArgsList.append(dict(name = userAttributeinfo["records"][i]['name'], dataType = userAttributeinfo["records"][i]['dataType']))
         return ArgsList
     except:
-        print("接口异常：",Args.json())
+        print("接口异常：",userAttribute.json())
 
-print(get_Args_info())
+print(get_userAttribute_info())
